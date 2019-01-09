@@ -1,0 +1,105 @@
+show databases;show databases;
+
+For creating database
+create database note_keeper;
+use note_keeper;
+
+Table creation
+NOTE
+create table note(note_id int , note_title varchar(20) , note_content varchar(600) , note_status boolean , note_creation_date date);
+
+alter table note modify note_creation_date datetime;
+alter table note modify note_status varchar(20);
+alter table note add primary key(note_id);
+
+
+
+
+
+Category
+ create table category(category_id int ,category_name varchar(20), category_descr varchar(200),cataegory_creation_date date, category_creator varchar(20));
+
+alter table category modify cataegory_creation_date datetime;
+alter table category add primary key(category_id);
+
+
+
+Reminder
+ create table reminder(reminder_id int ,reminder_name varchar(20), reminder_descr varchar(200),reminder_type varchar(20),reminder_creation_date datetime,reminder_creator varchar(20));
+
+alter table reminder add primary key(reminder_id);
+
+
+User
+create table user(user_id int ,user_name varchar(20), user_added_date datetime, user_password varchar(8), user_mobile int(10));
+
+alter table user add primary key(user_id);
+
+
+UserNote
+create table usernote(usernote_id int);
+alter table usernote add primary key(usernote_id);
+alter table usernote add note_id int;
+alter table usernote add foreign key(note_id) references note(note_id);
+alter table usernote add user_id int;
+alter table usernote add foreign key(user_id) references user(user_id);
+
+NoteReminder
+create table notereminder(notereminder_id int,note_id int,reminder_id int);
+alter table notereminder add primary key(notereminder_id);
+alter table notereminder add foreign key(note_id) references note(note_id);
+ alter table notereminder add foreign key(reminder_id) references reminder(reminder_id);
+
+
+NoteCategory
+ create table notecategory(notecategory_id int,note_id int,category_id int);
+alter table notecategory add primary key(notecategory_id);
+alter table notecategory add foreign key(note_id) references note(note_id);
+alter table notecategory add foreign key(category_id) references category(category_id);
+
+
+Inserting into tables
+
+note
+insert into note values(1,"morning message","hello i am sending you a morning message.","sent","2018-01-08 11:10:00");
+insert into note values(2,"evening message","hello i am sending you a evening message.","sent","2018-01-08 11:10:00");
+insert into note values(3,"evening message","hello i am sending you a evening message.","received","2018-01-08 11:10:10");
+select * from note;
+
+category
+insert into category values(1,"message","anything can be a message.","2018-01-08 11:00:00","Rachan");
+insert into category values(2,"important message","This is an important message.","2018-01-08 11:10:00","Jaspal");
+insert into category values(3,"personal message","This is a personal message.","2018-01-08 11:10:00","Soumyadeep");
+
+Reminder
+insert into reminder values(10,"morning medicine","Dont forget to have your morning dose.","medicine","2018-01-08 11:10:00","Doctor Strange");
+insert into reminder values(1,"besty birthday","Dont forget its your besty's birthday.","birthday","2018-01-08 11:10:00","Captain Marvel");
+insert into reminder values(2,"bf birthday","Dont forget its your bf's birthday.","birthday","2018-01-08 11:10:00","Hulk");
+
+User
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
